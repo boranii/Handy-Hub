@@ -54,7 +54,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         color: isActive
             ? AppColors.primaryColor
             : AppColors.secondaryColor.withAlpha(125),
-        borderRadius: BorderRadius.circular(AppDimensions.radius),
+        borderRadius: BorderRadius.circular(AppDimensions.radius8),
       ),
     );
   }
@@ -76,8 +76,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             InkWell(
-              onTap: () {},
-              borderRadius: BorderRadius.circular(AppDimensions.radius),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed('/home');
+              },
+              borderRadius: BorderRadius.circular(AppDimensions.radius8),
               child: Padding(
                 padding: EdgeInsets.all(AppDimensions.size8),
                 child: Text(
@@ -106,7 +108,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Navigator.of(context).pushReplacementNamed('/home');
                 }
               },
-              borderRadius: BorderRadius.circular(AppDimensions.radius),
+              borderRadius: BorderRadius.circular(AppDimensions.radius8),
               child: Padding(
                 padding: EdgeInsets.all(AppDimensions.size8),
                 child: Text(

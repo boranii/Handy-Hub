@@ -1,10 +1,13 @@
-class AppDimensions{
-  static const double size56=56;
-  static const double size24=24;
-  static const double size16=16;
-  static const double size8=8;
-  static const double size4=4;
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-  static const double radius=8;
+class AppDimensions{
+  static  double size56=56.w;
+  static  double size24=24.w;
+  static  double size16=16.w;
+  static  double size8=8.w;
+  static  double size4=4.w;
+
+  static double radius8=8.r;
+  static double radius16=16.r;
 
 }
