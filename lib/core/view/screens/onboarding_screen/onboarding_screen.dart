@@ -5,7 +5,7 @@ import 'package:handy_hub/core/constants/app_colors.dart';
 import 'package:handy_hub/core/constants/app_dimensions.dart';
 import 'package:handy_hub/core/constants/app_images.dart';
 import 'package:handy_hub/core/models/onboarding_model.dart';
-import 'package:handy_hub/core/view/screens/onboarding_screen/list.dart';
+import 'package:handy_hub/core/view/screens/onboarding_screen/onboarding_items.dart';
 
 class OnboardingScreen extends StatefulWidget {
   OnboardingScreen({super.key});
@@ -63,10 +63,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView.builder(
-        itemCount: onboardingItem.length,
+        itemCount: onboardingItems.length,
         physics: NeverScrollableScrollPhysics(),
         controller: onboardingController,
-        itemBuilder: (context, idx) => oo(onboardingItem[idx]),
+        itemBuilder: (context, idx) => oo(onboardingItems[idx]),
       ),
       bottomSheet: Padding(
         padding: EdgeInsets.symmetric(
@@ -92,7 +92,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
             Row(
-              children: List.generate(onboardingItem.length, (index) {
+              children: List.generate(onboardingItems.length, (index) {
                 return indicator(index);
               }),
             ),

@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppDimensions{
   static  double size56=56.w;
+  static  double size32=32.w;
   static  double size24=24.w;
   static  double size16=16.w;
   static  double size8=8.w;
@@ -9,5 +11,8 @@ class AppDimensions{
 
   static double radius8=8.r;
   static double radius16=16.r;
+  static double radius32=32.r;
+
+  static BorderRadiusGeometry borderRadius8=BorderRadius.circular(AppDimensions.radius8);
 
 }
