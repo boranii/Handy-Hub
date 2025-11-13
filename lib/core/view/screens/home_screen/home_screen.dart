@@ -6,8 +6,11 @@ import 'package:handy_hub/core/constants/app_dimensions.dart';
 import 'package:handy_hub/core/constants/app_icons.dart';
 import 'package:handy_hub/core/constants/app_images.dart';
 import 'package:handy_hub/core/constants/app_text_styles.dart';
+import 'package:handy_hub/core/constants/app_theme.dart';
 import 'package:handy_hub/core/view/widgets/custom_multi_choice_button.dart';
 import 'package:handy_hub/core/view/widgets/custom_searchbar.dart';
+import 'package:handy_hub/core/view/widgets/states_text.dart';
+import 'package:handy_hub/core/view/widgets/worker_type.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,13 +21,7 @@ class HomeScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, 331.h),
         child: Container(
-          decoration: BoxDecoration(
-            color: AppColors.primaryColor,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(AppDimensions.radius16),
-              bottomRight: Radius.circular(AppDimensions.radius16),
-            ),
-          ),
+          decoration: AppTheme.primaryDecoration,
           child: Padding(
             padding: EdgeInsets.all(AppDimensions.size24),
             child: Column(
@@ -124,7 +121,9 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).pushNamed('/notifications');
+                      },
                       child: Badge(
                         // isLabelVisible: false,
                         label: Text('+9'),
@@ -241,69 +240,9 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Column(
-                      children: [
-                        Text(
-                          '100',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 48,
-                            color: AppColors.whiteColor,
-                          ),
-                        ),
-                        Text(
-                          'عمل',
-                          style: TextStyle(
-                            fontFamily: 'Cairo',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: AppColors.secondaryColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          '5',
-                          style: TextStyle(
-                            fontFamily: 'Cairo',
-                            fontWeight: FontWeight.w700,
-                            fontSize: 48.sp,
-                            color: AppColors.whiteColor,
-                          ),
-                        ),
-                        Text(
-                          'تقييم',
-                          style: TextStyle(
-                            fontFamily: 'Cairo',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16.sp,
-                            color: AppColors.secondaryColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          '100',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 48,
-                            color: AppColors.whiteColor,
-                          ),
-                        ),
-                        Text(
-                          'توظيف',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: AppColors.secondaryColor,
-                          ),
-                        ),
-                      ],
-                    ),
+                    StatesText(states: '100', statesTitle: 'عمل'),
+                    StatesText(states: '5', statesTitle: 'التقييم'),
+                    StatesText(states: '100', statesTitle: 'توظيف'),
                   ],
                 ),
               ],
@@ -321,7 +260,7 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Row(),
-              Text('الفئات', style: AppTextStyles.titleTextStyle),
+              Text('الفئات', style: AppTextStyles.title24TextStyle),
               SizedBox(height: AppDimensions.size16),
               SizedBox(
                 height: 102.h,
@@ -386,7 +325,7 @@ class HomeScreen extends StatelessWidget {
                         color: AppColors.secondaryColor,
                       ),
                     ),
-                    Text('العمال', style: AppTextStyles.titleTextStyle),
+                    Text('العمال', style: AppTextStyles.title24TextStyle),
                   ],
                 ),
               ),
@@ -410,187 +349,165 @@ class HomeScreen extends StatelessWidget {
                 runSpacing: AppDimensions.size16,
                 children: [
                   for (int i = 0; i < 5; i++)
-                    Container(
-                      width: 174.w,
-                      height: 221.h,
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      decoration: BoxDecoration(
-                        color: AppColors.whiteColor,
-                        borderRadius: BorderRadius.circular(
-                          AppDimensions.radius8,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 4,
-                            offset: Offset(0, 4),
+                    InkWell(
+                      onTap: (){
+                        Navigator.of(context).pushNamed('/work_details');
+                      },
+                      child: Container(
+                        width: 174.w,
+                        height: 221.h,
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        decoration: BoxDecoration(
+                          color: AppColors.whiteColor,
+                          borderRadius: BorderRadius.circular(
+                            AppDimensions.radius8,
                           ),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(AppImages.defaultImage),
-                                  fit: BoxFit.cover,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 4,
+                              offset: Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Expanded(
+                              flex: 3,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(AppImages.defaultImage),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                right: AppDimensions.size16,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                spacing: AppDimensions.size4,
-                                children: [
-                                  SizedBox(height: AppDimensions.size4),
-                                  Text(
-                                    'قاسم حسن',
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    'المحافظة-المديرية',
-                                    style: TextStyle(fontSize: 8.sp),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
+                            Expanded(
+                              flex: 2,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  right: AppDimensions.size16,
+                                ),
+                                child: Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     spacing: AppDimensions.size4,
                                     children: [
+                                      SizedBox(height: AppDimensions.size4),
                                       Text(
-                                        'كهربائي',
+                                        'قاسم حسن',
                                         style: TextStyle(
-                                          fontSize: 10.sp,
-                                          fontWeight: FontWeight.w500,
+                                          fontSize: 12.sp,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                      SvgPicture.asset(
-                                        AppIcons.boltIcon,
-                                        width: 16.w,
-                                        height: 16.h,
+                                      Text(
+                                        'المحافظة-المديرية',
+                                        style: TextStyle(fontSize: 8.sp),
+                                      ),
+                                      WorkerType(
+                                        type: 'كهربائي',
+                                        icon: AppIcons.boltIcon,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          for (int i = 0; i < 5; i++)
+                                            SvgPicture.asset(
+                                              AppIcons.starIcon,
+                                              height: 8.h,
+                                              width: 8.w,
+                                              colorFilter: ColorFilter.mode(
+                                                AppColors.secondaryColor,
+                                                BlendMode.srcIn,
+                                              ),
+                                            ),
+                                        ],
                                       ),
                                     ],
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      for (int i = 0; i < 5; i++)
-                                        Icon(
-                                          Icons.star,
-                                          color: AppColors.secondaryColor,
-                                          size: 12,
-                                        ),
-                                    ],
-                                  ),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                 ],
               ),
               SizedBox(height: 56),
-              Container(
-                margin: EdgeInsets.only(left: AppDimensions.size24),
-                height: 76.h,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                decoration: BoxDecoration(
-                  color: AppColors.whiteColor,
-                  borderRadius: AppDimensions.borderRadius8,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 4,
-                      offset: Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: AppDimensions.size24),
-                      width: 70.w,
-                      height: 28.h,
-                      decoration: BoxDecoration(
-                        color: AppColors.primaryColor,
-                        borderRadius: AppDimensions.borderRadius8,
-                      ),
-                      child: Center(
-                        child: Text(
-                          'المزيد',
-                          style: TextStyle(
-                            color: AppColors.whiteColor,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
+              InkWell(
+                onTap: (){
+                  Navigator.of(context).pushNamed('/worker_details');
+                },
+                child: Container(
+                  margin: EdgeInsets.only(left: AppDimensions.size24),
+                  height: 76.h,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  decoration: AppTheme.shadowDecoration,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left: AppDimensions.size24),
+                        width: 70.w,
+                        height: 28.h,
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryColor,
+                          borderRadius: AppDimensions.borderRadius8,
+                        ),
+                        child: Center(
+                          child: Text(
+                            'المزيد',
+                            style: TextStyle(
+                              color: AppColors.whiteColor,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Row(
-                      spacing: AppDimensions.size8,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          spacing: AppDimensions.size4,
-                          children: [
-                            Text(
-                              'العنوان',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              'المحافظة-المديرية',
-                              style: TextStyle(fontSize: 10),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                      Row(
+                        spacing: AppDimensions.size8,
+                        children: [
+                          Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               spacing: AppDimensions.size4,
                               children: [
                                 Text(
-                                  'كهربائي',
+                                  'العنوان',
                                   style: TextStyle(
-                                    fontSize: 10.sp,
-                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                SvgPicture.asset(
-                                  AppIcons.boltIcon,
-                                  width: 16.w,
-                                  height: 16.h,
+                                Text(
+                                  'المحافظة-المديرية',
+                                  style: TextStyle(fontSize: 10),
                                 ),
+                                WorkerType(type: 'كهربائي', icon: AppIcons.boltIcon),
                               ],
                             ),
-                          ],
-                        ),
-                        Container(
-                          width: 76.w,
-                          height: double.infinity,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(AppImages.defaultImage),
-                              fit: BoxFit.cover,
+                          ),
+                          Container(
+                            width: 76.w,
+                            height: double.infinity,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(AppImages.defaultImage),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(height: 56),
@@ -598,7 +515,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-
     );
   }
 }

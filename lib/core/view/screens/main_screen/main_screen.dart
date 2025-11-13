@@ -6,6 +6,8 @@ import 'package:handy_hub/core/constants/app_dimensions.dart';
 import 'package:handy_hub/core/constants/app_icons.dart';
 import 'package:handy_hub/core/view/screens/home_screen/home_screen.dart';
 import 'package:handy_hub/core/view/screens/main_screen/screens.dart';
+import 'package:handy_hub/core/view/widgets/custom_dialog.dart';
+import 'package:handy_hub/core/view/widgets/order_dialog_content.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -60,14 +62,19 @@ class _MainScreenState extends State<MainScreen> {
             //   },
             //   child: SvgPicture.asset( i == 1 ? AppIcons.mapFilledIcon: AppIcons.mapIcon),
             // ),
-            Container(
-              width: 61,
-              height: 61,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.secondaryColor,
+            InkWell(
+              onTap: (){
+                customDialog(context, OrderDialogContent());
+              },
+              child: Container(
+                width: 61,
+                height: 61,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.secondaryColor,
+                ),
+                child: Icon(Icons.add, size: 38, color: AppColors.whiteColor),
               ),
-              child: Icon(Icons.add, size: 38, color: AppColors.whiteColor),
             ),
             // InkWell(
             //   onTap: () {

@@ -13,6 +13,8 @@ class AppDimensions{
   static double radius16=16.r;
   static double radius32=32.r;
 
-  static BorderRadiusGeometry borderRadius8=BorderRadius.circular(AppDimensions.radius8);
+  static BorderRadius borderRadius8=BorderRadius.circular(AppDimensions.radius8);
+  static BorderRadius borderRadius16=BorderRadius.circular(AppDimensions.radius16);
+  static BorderRadius borderRadius32=BorderRadius.circular(AppDimensions.radius32);
 
 }

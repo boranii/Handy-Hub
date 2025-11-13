@@ -83,7 +83,6 @@ class _MapScreenState extends State<MapScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(title: const Text('My Location Map')),
       body: GoogleMap(
         // 1. Store the map controller
         onMapCreated: (controller) {
